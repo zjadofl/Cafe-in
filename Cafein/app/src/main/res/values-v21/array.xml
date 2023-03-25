@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="불편유형">
+        <item>유형을 선택해주세요.</item>
+        <item>직원의 불친절</item>
+        <item>매장 시설에 대한 불편</item>
+        <item>메뉴 개선점</item>
+    </string-array>
+
+    <string-array name="spinner_cafe">
+        <item>카페드림 [본관점]</item>
+        <item>카페드림 [행원스퀘어점]</item>
+        <item>중원</item>
+        <item>우유니</item>
+    </string-array>
+</resources>

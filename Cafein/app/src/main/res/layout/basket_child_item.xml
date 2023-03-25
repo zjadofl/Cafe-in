@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/optionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="옵션이름"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/optionPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="옵션가격"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

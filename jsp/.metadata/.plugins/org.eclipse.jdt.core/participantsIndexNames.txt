@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+D:\jspTest5\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3804985361.index
+\CafeinProject\src
+D:\jspTest5\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3399913176.index
+\CafeinProject\src

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".RegStep">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/stepClose"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="-8dp"
+            android:src="@drawable/close" />
+
+
+        <com.shuhart.stepview.StepView
+            android:id="@+id/regStepView"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:sv_selectedCircleColor="@color/colorPrimary"
+            app:sv_selectedTextColor="@color/colorPrimary"
+            app:sv_stepLineWidth="1dp"
+            app:sv_stepPadding="4dp"
+            app:sv_nextTextColor="@color/gray"
+            app:sv_nextStepLineColor="@color/gray"
+            app:sv_doneCircleColor="@color/colorPrimary"
+            app:sv_doneStepLineColor="@color/colorPrimary"
+            app:sv_doneCircleRadius="12dp"
+            app:sv_selectedCircleRadius="12dp"
+            app:sv_selectedStepNumberColor="@color/white"
+            app:sv_stepViewStyle="@style/StepView"
+            app:sv_doneStepMarkColor="@color/white"
+            app:sv_stepNumberTextSize="12sp"
+            app:sv_animationDuration="300"
+            app:sv_animationType="All"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+
+
+    <!-- step 1. 이용약관 동의 -->
+    <RelativeLayout
+        android:id="@+id/step1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step1Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="서비스약관에 동의해주세요."
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+
+        <CheckBox
+            android:id="@+id/allChkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/step1Text"
+            android:layout_marginLeft="-7dp"
+            android:buttonTint="@color/colorPrimary"
+            android:text="약관 전체 동의"
+            android:textSize="15sp"/>
+
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@+id/allChkBox"
+            android:layout_marginVertical="8dp"
+            android:background="@color/divider" />
+
+
+        <LinearLayout
+            android:id="@+id/chkBox1Linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-7dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="이용약관 동의(필수)"
+                android:textSize="15sp" />
+
+
+            <RelativeLayout
+                android:id="@+id/chkBox1PopUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="-8dp"
+                    android:src="@drawable/right_arrow" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/chkBox2Linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chkBox1Linear"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-7dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="개인정보 수집 및 이용동의(필수)"
+                android:textSize="15sp"/>
+
+
+            <RelativeLayout
+                android:id="@+id/chkBox2PopUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="-8dp"
+                    android:src="@drawable/right_arrow" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/step1NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/not_active_btn"
+            android:text="다 음"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- step 2. 회원종류 선택 -->
+    <RelativeLayout
+        android:id="@+id/step2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step2Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="회원님의 유형을 골라주세요."
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+
+        <RadioGroup
+            android:id="@+id/userTypeRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/step2Text">
+
+            <RadioButton
+                android:id="@+id/ownerRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="점주"
+                android:textSize="18sp"/>
+
+            <RadioButton
+                android:id="@+id/employeeRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="직원"
+                android:textSize="18sp"/>
+       </RadioGroup>
+
+        <Button
+            android:id="@+id/step2NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/neon_main_btn"
+            android:layout_alignParentBottom="true"
+            android:text="가입하기"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+
+
+
+    <!-- step 3. 아이디/비밀번호 생성 -->
+    <RelativeLayout
+        android:id="@+id/step3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step3Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="개인 정보 및 아이디와 비밀번호를 \n입력해주세요."
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/nameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/step3Text"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="이름"
+                android:inputType="text"
+                android:maxLength="5"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/birthEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameEdit"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="생년월일 8자리 (예: 19960408)"
+                android:inputType="date"
+                android:maxLength="8"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/regIdEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/birthEdit"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="아이디 (영소문자 7~13자리)"
+                android:inputType="text"
+                android:maxLength="13"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/regPwEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/regIdEdit"
+            app:passwordToggleEnabled="true"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호 (영소문자, 특수문자 8~15자리)"
+                android:inputType="textPassword"
+                android:maxLength="15"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/regPwConfirmEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/regPwEdit"
+            app:passwordToggleEnabled="true"
+            app:errorEnabled="true"
+            app:hintEnabled="false">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호 확인"
+                android:inputType="textPassword"
+                android:maxLength="15"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/step3NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/neon_main_btn"
+            android:layout_alignParentBottom="true"
+            android:text="가입하기"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+    <!-- step End. 가입축하 -->
+    <RelativeLayout
+        android:id="@+id/stepEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/stepEndText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="Cafe-in 회원이 된 것을\n축하드립니다."
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+
+        <Button
+            android:id="@+id/stepEndNextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/neon_main_btn"
+            android:layout_alignParentBottom="true"
+            android:text="로그인"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

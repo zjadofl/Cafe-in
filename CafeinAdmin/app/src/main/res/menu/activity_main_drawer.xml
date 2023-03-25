@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="홈" />
+        <item
+            android:id="@+id/nav_order"
+            android:title="주문관리" />
+        <item
+            android:id="@+id/nav_menu"
+            android:title="메뉴관리" />
+        <item
+            android:id="@+id/nav_sale"
+            android:title="매출관리" />
+        <item
+            android:id="@+id/nav_cs"
+            android:title="CS관리" />
+        <item
+            android:id="@+id/nav_stock"
+            android:title="재고관리" />
+        <item
+            android:id="@+id/nav_employee"
+            android:title="직원관리" />
+    </group>
+
+</menu>

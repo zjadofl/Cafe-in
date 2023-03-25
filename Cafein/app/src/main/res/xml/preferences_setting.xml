@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="개인정보"
+        android:iconSpaceReserved="false">
+
+        <Preference
+            android:selectable="false"
+            android:enabled="true"
+            android:key="userID"
+            android:title="사용자 아이디"/>
+
+        <PreferenceScreen
+            android:key="subPwChange"
+            android:title="비밀번호 변경" />
+
+        <Preference
+            android:selectable="true"
+            android:enabled="true"
+            android:key="logout"
+            android:title="로그아웃" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SalesManage">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/salesDate"
+        android:layout_width="330dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@android:drawable/edit_text"
+        android:gravity="center"
+        android:text="조회할 날짜를 선택해주세요."
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:id="@+id/tableHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/salesDate">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="순위"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:background="@drawable/table"
+                android:padding="10dp"
+                android:layout_weight="1.5"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="메뉴명"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:background="@drawable/table"
+                android:padding="10dp"
+                android:layout_weight="4.5"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="건수"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:background="@drawable/table"
+                android:padding="10dp"
+                android:layout_weight="3"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="매출"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:background="@drawable/table"
+                android:padding="10dp"
+                android:layout_weight="3"/>
+
+
+
+        </TableRow>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tableHead"
+        android:layout_above="@+id/totalSales">
+        <TableLayout
+            android:id="@+id/salesManageTL"
+            android:layout_below="@+id/tableHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:weightSum="12">
+
+
+        </TableLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/totalSales"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"/>
+</RelativeLayout>

@@ -1,0 +1,921 @@
+package cafein;
+
+import java.sql.Connection;
+import java.io.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+public class ConnectDB {
+    private static ConnectDB instance = new ConnectDB();
+
+    public static ConnectDB getInstance() {
+        return instance;
+    }
+
+    public ConnectDB() {
+
+    }
+
+    /*private String jdbcUrl = "jdbc:mysql://localhost:3306/testcafein?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private String dbId = "testcafehyw";
+    private String dbPw = "pw0785";*/
+    
+    private String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/cafein?zeroDateTimeBehavior=convertToNull";
+    private String dbId = "cafein";
+    private String dbPw = "kpmyj21723";
+    
+    private String className = "org.gjt.mm.mysql.Driver";
+    //private String className = "com.mysql.cj.jdbc.Driver";
+    
+    private Connection conn = null;
+    private PreparedStatement pstmt = null;
+    private PreparedStatement pstmt2 = null;
+    private ResultSet rs = null;
+    private String sql = "";
+    private String sql2 = "";
+
+    // �����ͺ��̽��� ����ϱ� ���� �ڵ尡 ����ִ� �޼���
+    public String registerDB(String id, String pw, String name) {
+    	String returns = "";
+        try {
+            //Class.forName("com.mysql.cj.jdbc.Driver");
+        	Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select us_id from user where us_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                if (rs.getString("us_id").equals(id)) { // �̹� ���̵� �ִ� ���
+                    returns = "hasId";
+                }
+            } else { // �Է��� ���̵� ���� ���
+                sql2 = "insert into user (us_id, us_pw, us_name) values(?,?,?)";
+                pstmt2 = conn.prepareStatement(sql2);
+                pstmt2.setString(1, id);
+                pstmt2.setString(2, pw);
+                pstmt2.setString(3, name);
+                pstmt2.executeUpdate();
+
+                returns = "ok";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+            if (pstmt2 != null)try {pstmt2.close();} catch (SQLException ex) {}
+            if (rs != null)try {rs.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+
+    public String loginDB(String id, String pw) {
+    	String returns = "";
+        try {
+            //Class.forName("com.mysql.cj.jdbc.Driver");
+        	Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select us_id, us_pw from user where us_id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) { //아이디가 있는 경우.
+				if (rs.getString("us_pw").equals(pw)) { //비밀번호가 일치하는 경우.
+					returns = "true";// 로그인 가능
+					System.out.println("성공");
+				} else { //아이디는 있지만 비밀번호가 틀린 경우.
+					returns = "false"; // 로그인 실패
+				}
+			} else { //아이디가 없는 경우.
+				returns = "noId"; // 아이디 또는 비밀번호 존재 X
+			}
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace(); }
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace(); }
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace(); }
+        }
+        return returns;
+    }
+    
+    public String loginEmployeeDB(String id, String pw) {
+    	String returns = "";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select ep_id, ep_pw from employee where ep_id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) { //아이디가 있는 경우.
+				if (rs.getString("ep_pw").equals(pw)) { //비밀번호가 일치하는 경우.
+					returns = "true";// 로그인 가능
+					System.out.println("성공");
+				} else { //아이디는 있지만 비밀번호가 틀린 경우.
+					returns = "false"; // 로그인 실패
+				}
+			} else { //아이디가 없는 경우.
+				returns = "noId"; // 아이디 또는 비밀번호 존재 X
+			}
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace(); }
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace(); }
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace(); }
+        }
+        return returns;
+    }
+    
+    //직원 정보 가져오기.
+    public JSONObject checkEmployeeDB(String id) {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray employeeArr=new JSONArray();
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select ep_num, ep_name, ep_pos from employee where ep_id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject employeeObj = new JSONObject();
+            	employeeObj.put("num", rs.getString("ep_num"));
+            	employeeObj.put("name", rs.getString("ep_name"));
+            	employeeObj.put("pos", rs.getString("ep_pos"));
+            	employeeArr.add(employeeObj);
+            	System.out.println(employeeObj);
+            }
+            jsonObj.put("employee", employeeArr);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+   
+    
+  //사용자 정보 가져오기.
+    public JSONObject checkUserDB(String id) {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray userArr=new JSONArray();
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select us_num, us_name, e_money from user where us_id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject userObj = new JSONObject();
+            	userObj.put("num", rs.getString("us_num"));
+            	userObj.put("name", rs.getString("us_name"));
+            	userObj.put("money", rs.getString("e_money"));
+            	userArr.add(userObj);
+            	System.out.println(userObj);
+            }
+            jsonObj.put("user", userArr);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+    
+    //비밀번호를 바꿈.
+    public String changePwDB(String id, String pw) {
+    	String returns = "";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "update user set us_pw = ? where us_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, pw);
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+            
+        } catch (Exception e) {
+
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+    
+    //직원 비밀번호를 바꿈.
+    public String empChangePwDB(String id, String pw) {
+    	String returns = "";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "update employee set ep_pw = ? where ep_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, pw);
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+            
+        } catch (Exception e) {
+
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {ex.printStackTrace();}
+        }
+        return returns;
+    }
+    
+    public String complainDB(String userNum, String cTitle, String cType, String cDate,
+    		String cContent, String cWriteDate) {
+    	String returns = "not ok";
+		try {
+			Class.forName(className);
+			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+			sql = "insert into complain (us_num, cp_title, cp_type, cp_content, "
+					+ "cp_date, cp_wdate) values(?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userNum);
+			pstmt.setString(2, cTitle);
+			pstmt.setString(3, cType);
+			pstmt.setString(4, cContent);
+			pstmt.setString(5, cDate);
+			pstmt.setString(6, cWriteDate);
+			pstmt.executeUpdate();
+			returns = "ok";
+			System.out.println("컴플레인 넣기 성공!");
+			if (rs.next()) {
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)try {rs.close();} catch (SQLException ex) {ex.printStackTrace();}
+			if (conn != null)try {conn.close();} catch (SQLException ex) {ex.printStackTrace();}
+			if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {ex.printStackTrace();}	
+		}
+		return returns;
+	}
+    
+    
+    
+    //출근 체크.
+    public String attendanceCheckDB(String num) {
+    	String returns = "not ok";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "insert into attendance (ep_num) values (?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, num);
+            pstmt.executeUpdate();
+        
+            returns = "ok";
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null)try {conn.close();} catch (SQLException ex) {ex.printStackTrace();}
+			if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {ex.printStackTrace();}
+			if (rs != null)try {rs.close();} catch (SQLException ex) {ex.printStackTrace();}
+		}
+		return returns;
+	}
+    
+    //메뉴 등록
+    public String registerMenuDB(String name, String price, String type) {
+    	String returns = "";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "insert into menu (mn_name, mn_price, mn_type) values(?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setString(2, price);
+            pstmt.setString(3, type);
+            pstmt.executeUpdate();
+            returns = "ok";
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+            if (rs != null)try {rs.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+    
+    //주문 추가.
+    public String insertOrderDB(String turn, String usNum, String menuNum, 
+    		String quantity, String price) {
+    	int orderTurn = Integer.parseInt(turn);
+    	int quan = Integer.parseInt(quantity);
+    	int totalPrice = Integer.parseInt(price);
+    	String returns = "";
+		try {
+			Class.forName(className);
+			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+			sql = "insert into order_ (od_turn, us_num, mn_num, od_amnt, od_price) values(?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orderTurn);
+			pstmt.setString(2, usNum);
+			pstmt.setString(3, menuNum);
+			pstmt.setInt(4, quan);
+			pstmt.setInt(5, totalPrice);
+			pstmt.executeUpdate();
+			returns = "ok";
+			System.out.println("주문 넣기 성공!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)try {rs.close();} catch (SQLException ex) {ex.printStackTrace();}
+			if (conn != null)try {conn.close();} catch (SQLException ex) {ex.printStackTrace();}
+			if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {ex.printStackTrace();}	
+		}
+		return returns;
+	}
+    
+    
+  //complain json
+    public JSONObject complainJsonDB(String userNum) {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray complainArr=new JSONArray();
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select * from complain where us_num=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userNum);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject complainObj = new JSONObject();
+            	complainObj.put("userNum", rs.getString("us_num"));
+            	complainObj.put("title", rs.getString("cp_title"));
+            	complainObj.put("type", rs.getString("cp_type"));
+            	complainObj.put("date", rs.getString("cp_date"));
+            	complainObj.put("writeDate",rs.getString("cp_wdate"));
+            	complainObj.put("content", rs.getString("cp_content"));
+            	complainObj.put("reply", rs.getString("cp_reply"));
+            	complainArr.add(complainObj);
+            	System.out.println(complainObj);
+            }
+            jsonObj.put("complain", complainArr);
+            //System.out.println(jsonObj);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+    
+    //select complain
+    public JSONObject selectCsDB() {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray complainArr=new JSONArray();
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select cp_id, us_id, cp_title, cp_type, cp_date, "
+            		+ "cp_wdate, cp_content, cp_reply "
+            		+ "from complain, user "
+            		+ "where user.us_num = complain.us_num";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject complainObj = new JSONObject();
+            	complainObj.put("id", rs.getString("cp_id"));
+            	complainObj.put("userID", rs.getString("us_id"));
+            	complainObj.put("title", rs.getString("cp_title"));
+            	complainObj.put("type", rs.getString("cp_type"));
+            	complainObj.put("date", rs.getString("cp_date"));
+            	complainObj.put("writeDate",rs.getString("cp_wdate"));
+            	complainObj.put("content", rs.getString("cp_content"));
+            	complainObj.put("reply", rs.getString("cp_reply"));
+            	complainArr.add(complainObj);
+            	System.out.println(complainObj);
+            }
+            jsonObj.put("complain", complainArr);
+            //System.out.println(jsonObj);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+    
+    //menuManage json
+    public JSONObject menuManageJsonDB() {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray menuArr=new JSONArray();
+
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select * from menu";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject menuObj = new JSONObject();
+            	menuObj.put("name", rs.getString("mn_name"));
+            	menuObj.put("price", rs.getString("mn_price"));
+            	menuObj.put("type", rs.getString("mn_type"));
+            	menuArr.add(menuObj);
+            	//System.out.println(menuArr);
+            }
+            jsonObj.put("menu", menuArr);
+            //System.out.println(jsonObj);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+    
+    //open Connection
+    public Connection openConnection() {
+	    	try {
+				conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        return conn;
+    }
+    
+    //close Connection
+    public void closeConnection(Connection conn) {
+    	if(conn != null){
+			try {
+				conn.close();
+				System.out.println("DB Disconnect");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+    }
+    
+    
+    //cs 답변 등록
+    public String insertCSAnswerDB(String answer, String pCpID) {
+    	int cpID = Integer.parseInt(pCpID);
+    	String returns = "";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "update complain set cp_reply = ? where cp_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, answer);
+            pstmt.setInt(2, cpID);
+            pstmt.executeUpdate();
+            returns = "ok";
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+            if (rs != null)try {rs.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+    
+    //emoney를 바꿈.
+    public String updateEmoney(String eMoney, String usID) {
+    	String returns = "";
+    	int money = Integer.parseInt(eMoney);
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "update user set e_money = ? where us_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, money);
+            pstmt.setString(2, usID);
+            pstmt.executeUpdate();
+            returns = "ok";
+        } catch (Exception e) {
+
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+    
+    
+  //employeeManage
+    public JSONObject employeeManageDB() {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray employeeArr=new JSONArray();
+
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            //sql = "select * from employee";
+            sql = "select ep_num, ep_name, ep_id, ep_pw, "
+            		+ "CASE "
+            		+ "WHEN ep_pos ='o' "
+            		+ "THEN '점주'"
+            		+ "WHEN ep_pos ='e' "
+            		+ "THEN '직원'"
+            		+ "END AS pos, "
+            		+ "ep_phone, ep_address, "
+            		+ "DATE_FORMAT(ep_sdate, '%Y년 %m월 %d일') AS sdate, "
+            		+ "DATE_FORMAT(ep_stime, '%H시 %i분') AS stime, "
+            		+ "DATE_FORMAT(ep_etime, '%H시 %i분') AS etime "
+            		+ "from employee";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject employeeObj = new JSONObject();
+            	employeeObj.put("num", rs.getInt("ep_num"));
+            	employeeObj.put("name", rs.getString("ep_name"));
+            	employeeObj.put("id", rs.getString("ep_id"));
+            	employeeObj.put("pw", rs.getString("ep_pw")); 
+            	employeeObj.put("pos", rs.getString("pos"));
+            	
+            	if (rs.getString("ep_phone").equals("")) {
+            		employeeObj.put("phone", "");
+            	} else {
+            		employeeObj.put("phone", rs.getString("ep_phone"));
+            	}
+            	
+            	if (rs.getString("ep_address").equals("")) {
+            		employeeObj.put("address", "");
+            	} else {
+            		employeeObj.put("address", rs.getString("ep_address"));
+            	}
+            	
+            	if (rs.getString("sdate").equals("")) {
+            		employeeObj.put("date", "");
+            	} else {
+            		employeeObj.put("date", rs.getString("sdate"));
+            	}
+            	
+            	
+            	if (rs.getString("stime").equals("00:00:00")) {
+            		employeeObj.put("part1", "");
+            	} else {
+            		employeeObj.put("part1", rs.getString("stime"));
+            	}
+            	
+            	if (rs.getString("etime").equals("00:00:00")) {
+            		employeeObj.put("part2", "");
+            	} else {
+            		employeeObj.put("part2", rs.getString("etime"));
+            	}
+            	employeeArr.add(employeeObj);
+            	//System.out.println(menuArr);
+            }
+            jsonObj.put("employee", employeeArr);
+            //System.out.println(jsonObj);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+    
+    //메뉴 주문 승인/거절.
+    public JSONObject orderARJsonDB() {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray orderArr = new JSONArray();
+
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "select od_num, od_turn, us_id, mn_name, od_date "
+            		+ "from order_, user, menu "
+            		+ "where order_.us_num = user.us_num "
+            		+ "and order_.mn_num = menu.mn_num "
+            		+ "and od_status = '요청' "
+            		+ "order by od_num";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	JSONObject orderObj = new JSONObject();
+            	orderObj.put("num", rs.getString("od_num"));
+            	orderObj.put("turn", rs.getString("od_turn"));
+            	orderObj.put("userId", rs.getString("us_id"));
+            	orderObj.put("menuName", rs.getString("mn_name"));
+            	orderObj.put("date", rs.getString("od_date"));
+            	orderArr.add(orderObj);
+            	//System.out.println(menuArr);
+            }
+            jsonObj.put("order", orderArr);
+            //System.out.println(jsonObj);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+            if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+        }
+        return jsonObj;
+    }
+    
+    //select salesManage
+    /*public JSONObject salesManageDB() {
+        JSONObject jsonObj = new JSONObject();
+        JSONArray salesArr = new JSONArray();
+
+         try {
+             Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "select * from order_";
+             pstmt = conn.prepareStatement(sql);
+             rs = pstmt.executeQuery();
+             while (rs.next()) {
+                JSONObject salesObj = new JSONObject();
+                salesObj.put("name", rs.getString("mn_name"));
+                salesObj.put("amnt", rs.getString("od_amnt"));
+                salesArr.add(salesObj);
+                //System.out.println(menuArr);
+             }
+             jsonObj.put("sales", salesArr);
+             //System.out.println(jsonObj);
+         } catch (Exception e) {
+            e.printStackTrace();
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) { ex.printStackTrace();}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) { ex.printStackTrace();}
+             if (conn != null)try {conn.close();} catch (SQLException ex) { ex.printStackTrace();}
+         }
+         return jsonObj;
+     }*/
+    
+    //날짜별로 매출관리.
+    public JSONObject salesManageDB(String date) {
+    	JSONObject jsonObj = new JSONObject();
+    	JSONArray salesArr = new JSONArray();
+         try {
+            Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "select mn_name, date(od_date) as date, sum(od_amnt) as amnt_sum, "
+              		+ "(mn_price * sum(od_amnt)) as total_price "
+         		    + "from order_, menu "
+         		    + "where date(od_date) = ? "
+         		    + "and menu.mn_num = order_.mn_num "
+         		    + "group by menu.mn_num "
+         		    + "order by amnt_sum desc";
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setString(1, date);
+             rs = pstmt.executeQuery();
+             int rank = 0;
+             while (rs.next()) {
+             	JSONObject salesObj = new JSONObject();
+             	rank += 1;
+             	String strRank = Integer.toString(rank);
+             	salesObj.put("rank", strRank);
+             	salesObj.put("name", rs.getString("mn_name"));
+             	salesObj.put("date", rs.getString("date"));
+             	salesObj.put("amount", rs.getString("amnt_sum"));
+             	salesObj.put("price", rs.getString("total_price"));
+             	salesArr.add(salesObj);
+             	//System.out.println(menuArr);
+             }
+             jsonObj.put("sales", salesArr);
+      
+
+         } catch (Exception e) {
+
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+             if (conn != null)try {conn.close();} catch (SQLException ex) {}
+         }
+         return jsonObj;
+     }
+     
+   
+
+    //직원 정보를 갱신. 
+    public String updateEmployeeInfoDB(String phone, String address, 
+    		String date, String part1, String part2, String num) {
+    	int number = Integer.parseInt(num);
+    	String returns = "not ok";
+        try {
+            Class.forName(className);
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "update employee set ep_phone = ?, ep_address = ?, "
+            		+ "ep_sdate = ?, ep_stime = ?, ep_etime = ? "
+            		+ "where ep_num = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, phone);
+            pstmt.setString(2, address);
+            pstmt.setString(3, date);
+            pstmt.setString(4, part1);
+            pstmt.setString(5, part2);
+            pstmt.setInt(6, number);
+            pstmt.executeUpdate();
+            returns = "ok";
+        } catch (Exception e) {
+
+        } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+            if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+    
+    //주문관리 스탬프
+    public String orderListDB(String num) {
+         int userNum = Integer.parseInt(num);
+         String returns = null;
+	     try {
+	         Class.forName(className);
+	         conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+	         sql = "select sum(od_amnt) as amnt_sum "
+	         		+ "from order_ "
+	         		+ "where od_status = '승인' "
+	         		+ "group by us_num = ?";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, userNum);
+	         rs = pstmt.executeQuery();
+	         while (rs.next()) {
+	        	 returns = Integer.toString(rs.getInt("amnt_sum"));
+	         }
+	         
+       } catch (Exception e) {
+          e.printStackTrace();
+       } finally {
+          if (conn != null)try {conn.close();} catch (SQLException ex) {ex.printStackTrace();}
+          if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {ex.printStackTrace();}
+          if (rs != null)try {rs.close();} catch (SQLException ex) {ex.printStackTrace();}
+       }
+       return returns;
+    }
+    
+    //주문번호를 받아서 '승인' 상태로 바꿈. 
+    public String okOrderDB(String num) {
+    	int number = Integer.parseInt(num);
+        String returns = "not ok";
+
+         try {
+             Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "update order_ set od_status = '승인' where od_num = ?";
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setInt(1, number);
+             pstmt.executeUpdate();
+             returns = "ok";
+             
+         } catch (Exception e) {
+
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+             if (conn != null)try {conn.close();} catch (SQLException ex) {}
+         }
+         return returns;
+     }
+    
+  //주문번호를 받아서 '거절' 상태로 바꿈. 
+    public String refuseOrderDB(String num) {
+    	int number = Integer.parseInt(num);
+        String returns = "not ok";
+
+         try {
+             Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "update order_ set od_status = '거부' where od_num = ?";
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setInt(1, number);
+             pstmt.executeUpdate();
+             returns = "ok";
+             
+         } catch (Exception e) {
+
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+             if (conn != null)try {conn.close();} catch (SQLException ex) {}
+         }
+         return returns;
+     }
+    
+    //거부 목록.
+    public JSONObject refuseManageDB(String name, String reason) {
+    	 JSONObject jsonObj = new JSONObject();
+    	 JSONArray refuseArr = new JSONArray();
+         try {
+            Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "select od_num, mn_name, od_status, od_reason, od_date "
+             		+ "from order_, menu "
+             		+ "where order_.mn_num = menu.mn_num and "
+             		+ "od_status = '거부' "
+             		+ "order by od_date DESC";
+             
+             pstmt = conn.prepareStatement(sql);
+             rs = pstmt.executeQuery();
+             
+             while (rs.next()) {
+             	JSONObject refuseObj = new JSONObject();
+             	refuseObj.put("num", rs.getString("od_num"));
+             	refuseObj.put("menuName", rs.getString("mn_name"));
+             	refuseObj.put("status", rs.getString("od_status"));
+             	refuseObj.put("reason", rs.getString("od_reason"));
+             	refuseObj.put("date", rs.getString("od_date"));
+             	refuseArr.add(refuseObj);
+             	//System.out.println(menuArr);
+             }
+             jsonObj.put("refuse", refuseArr);
+
+
+         } catch (Exception e) {
+
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+             if (conn != null)try {conn.close();} catch (SQLException ex) {}
+         }
+         return jsonObj;
+     }
+    
+    
+    //전체 승인
+    public String allOkOrderDB(String num) {
+        String returns = "not ok";
+
+         try {
+             Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "update order_ set od_status = '승인' where od_status = '요청'";
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setString(1,num);
+             pstmt.executeUpdate();
+             returns = "ok";
+             
+         } catch (Exception e) {
+
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+             if (conn != null)try {conn.close();} catch (SQLException ex) {}
+         }
+         return returns;
+     }
+    
+    //전체 거절
+    public String allRefuseOrderDB(String num) {
+        String returns = "not ok";
+
+         try {
+             Class.forName(className);
+             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+             sql = "update order_ set od_status = '거부' where od_status = '요청'";
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setString(1,num);
+             pstmt.executeUpdate();
+             returns = "ok";
+             
+         } catch (Exception e) {
+
+         } finally {if (rs != null)try {rs.close();} catch (SQLException ex) {}
+             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+             if (conn != null)try {conn.close();} catch (SQLException ex) {}
+         }
+         return returns;
+     }
+    
+    //접수 요망 카운트 
+    public String orderARCntDB(String date) {
+         String returns = null;
+	     try {
+	         Class.forName(className);
+	         conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+	         sql = "select sum(od_amnt) as amnt_sum, od_date "
+	         		+ "from order_ "
+	         		+ "where od_status = '요청' "
+	         		+ "and date(od_date) = ? "
+	         		+ "group by date(od_date)";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, date);
+	         rs = pstmt.executeQuery();
+	         while (rs.next()) {
+	        	 returns = Integer.toString(rs.getInt("amnt_sum"));
+	         }
+	         
+       } catch (Exception e) {
+          e.printStackTrace();
+       } finally {
+          if (conn != null)try {conn.close();} catch (SQLException ex) {ex.printStackTrace();}
+          if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {ex.printStackTrace();}
+          if (rs != null)try {rs.close();} catch (SQLException ex) {ex.printStackTrace();}
+       }
+       return returns;
+    }
+    
+    
+    
+    
+    
+    
+   
+
+}

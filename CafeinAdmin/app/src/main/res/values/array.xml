@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="총주문내역">
+        <item>전체</item>
+        <item>요청</item>
+        <item>승인</item>
+        <item>거부</item>
+        <item>완료</item>
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MenuRegister">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/stepClose"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="-8dp"
+        android:src="@drawable/close" />
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/regStepView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:sv_selectedCircleColor="@color/colorPrimary"
+        app:sv_selectedTextColor="@color/colorPrimary"
+        app:sv_stepLineWidth="1dp"
+        app:sv_stepPadding="4dp"
+        app:sv_nextTextColor="@color/gray"
+        app:sv_nextStepLineColor="@color/gray"
+        app:sv_doneCircleColor="@color/colorPrimary"
+        app:sv_doneStepLineColor="@color/colorPrimary"
+        app:sv_doneCircleRadius="12dp"
+        app:sv_selectedCircleRadius="12dp"
+        app:sv_selectedStepNumberColor="@color/white"
+        app:sv_stepViewStyle="@style/StepView"
+        app:sv_doneStepMarkColor="@color/white"
+        app:sv_stepNumberTextSize="12sp"
+        app:sv_animationDuration="300"
+        app:sv_animationType="All"
+        android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+    <!-- step 1. 카테고리 선택 -->
+    <RelativeLayout
+        android:id="@+id/step1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step1Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="카테고리를 선택하세요."
+            android:textSize="25sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/step1Text"
+            android:gravity="center"
+            android:layout_marginBottom="80dp"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/categoryRadio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/coffeeRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Coffee"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="15dp"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/nonCoffeeRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="18sp"
+                    android:text="NonCoffee"/>
+
+                <RadioButton
+                    android:id="@+id/bakeryRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Bakery"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/step1NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/neon_main_btn"
+            android:text="다 음"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!-- step 2. 메뉴 정보 입력 1 -->
+    <RelativeLayout
+        android:id="@+id/step2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/step2Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="36dp"
+                android:text="메뉴 정보를 입력해주세요."
+                android:textSize="25sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="메뉴 이름" />
+
+                <EditText
+                    android:id="@+id/menuNameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="메뉴 가격" />
+
+                <EditText
+                    android:id="@+id/menuPriceEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="메뉴 설명" />
+
+            <EditText
+                android:id="@+id/menuExplainEdit"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                android:gravity="top"
+                android:padding="10dp"
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:background="@drawable/edit_border"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/step2NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/neon_main_btn"
+            android:text="다 음"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!-- step 3. 메뉴 정보 입력 2 -->
+    <RelativeLayout
+        android:id="@+id/step3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step3Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="메뉴 정보를 입력해주세요."
+            android:textSize="25sp"/>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/temperatureLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/step3Text">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="온도"/>
+
+            <CheckBox
+                android:id="@+id/chkHot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="HOT"/>
+
+            <CheckBox
+                android:id="@+id/chkIce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ICE"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sizeLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/temperatureLinear">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="사이즈"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nutritionLinear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_below="@+id/sizeLinear"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="칼로리" />
+
+            <EditText
+                android:id="@+id/kcal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="포화지방" />
+
+            <EditText
+                android:id="@+id/fat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nutritionLinear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nutritionLinear1"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="단백질" />
+
+            <EditText
+                android:id="@+id/protein"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="나트륨  " />
+
+            <EditText
+                android:id="@+id/natrium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nutritionLinear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nutritionLinear2"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="당류" />
+
+            <EditText
+                android:id="@+id/saccharide"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="카페인  " />
+
+            <EditText
+                android:id="@+id/caffeine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/step3NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/neon_main_btn"
+            android:text="다 음"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!-- step 4. 사진 등록 -->
+    <RelativeLayout
+        android:id="@+id/step4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step4Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="사진을 등록해주세요."
+            android:textSize="25sp"/>
+
+        <LinearLayout
+            android:id="@+id/cropArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_above="@+id/step4NextBtn"
+            android:layout_below="@+id/step4Text">
+
+            <ImageView
+                android:id="@+id/croppedImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/loading_image"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/step4NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/neon_main_btn"
+            android:text="다 음"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!-- step 5. 재료 입력 -->
+    <RelativeLayout
+        android:id="@+id/step5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/step5Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="36dp"
+            android:text="재료를 선택해주세요."
+            android:textSize="25sp"/>
+
+
+        <Button
+            android:id="@+id/addRowBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/step5Text"
+            android:layout_alignBaseline="@+id/step5Text"
+            android:text="+"/>
+
+
+        <TableLayout
+            android:id="@+id/step5Table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:layout_below="@+id/step5Text"
+            android:weightSum="3">
+
+            <TableRow
+                android:background="#EAEAEA">
+                <TextView
+                    android:background="@drawable/table"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="재료"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:background="@drawable/table"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="원재료 값"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:background="@drawable/table"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="이익률"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
+            </TableRow>
+        </TableLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/step5Table"
+            android:weightSum="3">
+
+            <TableLayout
+                android:id="@+id/addTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:weightSum="3">
+
+                <TableRow>
+                    <EditText
+                        android:background="@drawable/table"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:hint=""
+                        android:textSize="18sp"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:background="@drawable/table"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:background="@drawable/table"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+            </TableLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/stepCompleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/neon_main_btn"
+            android:text="등 록"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

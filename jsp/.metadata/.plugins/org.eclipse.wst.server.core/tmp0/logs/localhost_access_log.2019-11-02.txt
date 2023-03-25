@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [02/Nov/2019:00:58:30 +0900] "GET /CafeinProject/view/include/test222.jsp HTTP/1.1" 200 1019
+0:0:0:0:0:0:0:1 - - [02/Nov/2019:00:59:06 +0900] "GET /CafeinProject/view/include/test222.jsp HTTP/1.1" 200 1021
+0:0:0:0:0:0:0:1 - - [02/Nov/2019:01:00:01 +0900] "GET /CafeinProject/view/include/salesmanagement.jsp HTTP/1.1" 500 8212
+0:0:0:0:0:0:0:1 - - [02/Nov/2019:01:00:01 +0900] "GET /CafeinProject/assets/custom/custom.css HTTP/1.1" 404 1074
+127.0.0.1 - - [02/Nov/2019:18:42:01 +0900] "GET / HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [02/Nov/2019:18:42:04 +0900] "GET /CafeinProject/WEB-INF/classes/cafein/ConnectDB.java HTTP/1.1" 404 1013
+0:0:0:0:0:0:0:1 - - [02/Nov/2019:18:58:26 +0900] "GET /CafeinProject/WEB-INF/classes/cafein/ConnectDB.java HTTP/1.1" 404 1013

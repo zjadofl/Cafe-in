@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [04/Nov/2019:00:01:47 +0900] "GET /CafeinProject/view/include/complain.jsp HTTP/1.1" 500 2816
+0:0:0:0:0:0:0:1 - - [04/Nov/2019:00:29:20 +0900] "GET /CafeinProject/WEB-INF/classes/cafein/ConnectDB.java HTTP/1.1" 404 1013

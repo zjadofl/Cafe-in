@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CSManageDetail">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/colorPrimary"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/csBtn"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/csType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="[ cs 유형 ]"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/csTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/csType"
+                android:layout_marginLeft="10dp"
+                android:text="cs 제목"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/writerText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/csType"
+                android:layout_marginTop="10dp"
+                android:text="작성자 : "
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/writerText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/csType"
+                android:layout_toRightOf="@+id/writerText1"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/dateText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/writerText1"
+                android:layout_marginTop="10dp"
+                android:text="작성일시 : "
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/dateText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/writerText1"
+                android:layout_toRightOf="@+id/dateText1"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/csDateText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dateText1"
+                android:layout_marginTop="10dp"
+                android:text="컴플레인 일시 : "
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/csDateText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dateText1"
+                android:layout_toRightOf="@+id/csDateText1"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/reasonText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/csDateText1"
+                android:layout_marginTop="25dp"
+                android:text="내용 : "
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/reasonText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/csDateText1"
+                android:layout_toRightOf="@+id/reasonText1"
+                android:layout_marginTop="15dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/reasonTxt"
+                android:background="@drawable/table"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:padding="10dp"
+                android:layout_below="@+id/reasonText1"
+                android:layout_marginVertical="15dp"/>
+
+            <TextView
+                android:id="@+id/answerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reasonTxt"
+                android:layout_marginTop="25dp"
+                android:text="답변 달기"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/answerEdit"
+                android:background="@drawable/table"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:padding="10dp"
+                android:gravity="top"
+                android:layout_below="@+id/answerText"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/csBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/neon_main_btn"
+        android:layout_alignParentBottom="true"
+        android:text="답변 저장"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+
+</RelativeLayout>

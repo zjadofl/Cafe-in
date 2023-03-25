@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".PaymentComplete">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/cafeName"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="25dp"
+        android:hint="카페드림 본관점"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/cafeAddress"
+        android:layout_below="@+id/cafeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:hint="성동구 왕십리 한양여대"/>
+
+    <TextView
+        android:id="@+id/Tel"
+        android:layout_below="@+id/cafeAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="TEL: "/>
+
+    <TextView
+        android:id="@+id/cafeTel"
+        android:layout_below="@+id/cafeAddress"
+        android:layout_toRightOf="@+id/Tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="02-651-3765"/>
+
+    <TextView
+        android:id="@+id/orderDateTime"
+        android:layout_below="@+id/cafeTel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="20##-##-##"/>
+
+    <ImageView
+        android:id="@+id/dashLine1"
+        android:layout_below="@+id/orderDateTime"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/dashLine2"
+        android:layout_below="@+id/dashLine1"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/payLiner"
+        android:layout_below="@id/dashLine2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문 번호"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/orderNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:hint="A-01"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dashLine3"
+        android:layout_below="@+id/payLiner"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <ImageView
+        android:id="@+id/dashLine4"
+        android:layout_below="@+id/dashLine3"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/payLiner2"
+        android:layout_below="@+id/dashLine4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/menuName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="메뉴명"/>
+
+        <TextView
+            android:id="@+id/menuUnitPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="단가"/>
+
+        <TextView
+            android:id="@+id/menuQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="수량"/>
+
+        <TextView
+            android:id="@+id/menuPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="금액"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dashLine5"
+        android:layout_below="@+id/payLiner2"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"/>
+
+
+    <!-- 구매 상품 -->
+    <LinearLayout
+        android:id="@+id/MenuAAAA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/dashLine5"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/menuNameDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="메뉴명"/>
+
+        <TextView
+            android:id="@+id/menuUnitPriceDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="단가"/>
+
+        <TextView
+            android:id="@+id/menuQuantityDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="수량"/>
+
+        <TextView
+            android:id="@+id/menuPriceDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="금액"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dashLine6"
+        android:layout_below="@+id/MenuAAAA"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/payLiner3"
+        android:layout_below="@+id/dashLine6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="합계"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_below="@+id/dashLine6"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:hint="0,000"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dashLine7"
+        android:layout_below="@+id/payLiner3"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/payLiner4"
+        android:layout_below="@+id/dashLine7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="e-카드"/>
+
+        <TextView
+            android:id="@+id/paymentPrice"
+            android:layout_below="@+id/dashLine6"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:hint="0,000"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dashLine8"
+        android:layout_below="@+id/payLiner4"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/payLiner5"
+        android:layout_below="@+id/dashLine8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginVertical="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="적 립 된 e - 스 탬 프  |  "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="e - 카 드 잔 액 |  "/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/payLiner6"
+        android:layout_below="@+id/dashLine8"
+        android:layout_toRightOf="@+id/payLiner5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginVertical="10dp">
+
+        <TextView
+            android:id="@+id/eCoupon"
+            android:layout_below="@+id/dashLine6"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"/>
+
+        <TextView
+            android:id="@+id/eCard"
+            android:layout_below="@+id/dashLine6"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="10,000"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dashLine9"
+        android:layout_below="@+id/payLiner6"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <ImageView
+        android:id="@+id/dashLine10"
+        android:layout_below="@+id/dashLine9"
+        android:src="@drawable/dash_line"
+        android:layerType="software"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="5dp"/>
+
+
+
+    <Button
+        android:id="@+id/checkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/neon_main_btn"
+        android:layout_alignParentBottom="true"
+        android:text="주문 확인"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+</RelativeLayout>

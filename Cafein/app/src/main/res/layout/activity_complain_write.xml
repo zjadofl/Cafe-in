@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ComplainWrite">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/colorPrimary"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/complainTitle"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/textbox"
+                android:cursorVisible="true"
+                android:hint="  제목을 입력해주세요."
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:textSize="16dp" />
+
+            <Spinner
+                android:id="@+id/complainTypeSpinner"
+                android:layout_width="340dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:entries="@array/불편유형" />
+
+            <Button
+                android:id="@+id/complainDateBtn"
+                android:layout_width="330dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:gravity="left"
+                android:text="불편사항 발생 날짜를 선택해주세요.                 +"
+                android:textAlignment="gravity"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/complainWriteDate"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:layout_marginLeft="45dp"
+                android:text="xxxx년 xx월 xx일 "
+                android:textSize="16dp" />
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="320dp"
+                android:layout_height="210dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/textbox">
+
+                <LinearLayout
+                    android:id="@+id/scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/complainContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:padding="3dp"
+                        android:background="@null"
+                        android:cursorVisible="true"
+                        android:gravity="left"
+                        android:inputType="textMultiLine|textNoSuggestions"
+                        android:hint=" 저희 카페에 방문해주셔서 감사합니다.\n 주신 의견 참고하여 더 좋은 운영으로 보답하겠습니다.\n 성함/연락처/불편발생시간/내용 기재해주시면 신속히  처리해드리겠습니다 :)"
+                        android:textSize="14dp" />
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/complainWriteBtn"
+                android:layout_width="75dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimary"
+                android:text="등록"
+                android:textColor="#ffffff"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group>
+        <item
+            android:id="@+id/nav_home"
+            android:title="홈" />
+        <item
+            android:id="@+id/nav_eCard"
+            android:title="e-카드" />
+        <item
+            android:id="@+id/nav_eStamp"
+            android:title="e-스탬프" />
+        <item
+            android:id="@+id/nav_smartOrder"
+            android:title="스마트 오더" />
+
+        <item
+            android:id="@+id/nav_complain"
+            android:title="컴플레인" />
+
+
+    </group>
+
+</menu>

@@ -1,0 +1,2 @@
+127.0.0.1 - - [25/Nov/2019:23:32:58 +0900] "GET / HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [25/Nov/2019:23:32:59 +0900] "GET /CafeinProject/WEB-INF/classes/cafein/ConnectDB.java HTTP/1.1" 404 1013

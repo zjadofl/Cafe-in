@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".SmartOrder">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderCircularHandlerEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1"
+                app:sliderStartAutoCycle="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/wholeMenuBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="전체 메뉴"
+                    android:textStyle="bold"/>
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:background="@color/divider" />
+
+                <TextView
+                    android:id="@+id/orderDetailBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="주문 내역"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="COFFEE 추천 메뉴"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@color/divider"
+                        />
+                    <ImageView
+                        android:id="@+id/coffeeOne"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/coffeeOneInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        />
+
+                    <TextView
+                        android:id="@+id/coffeeOneInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/divider"
+                        />
+
+                    <ImageView
+                        android:id="@+id/coffeeTwo"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/coffeeTwoInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        />
+
+                    <TextView
+                        android:id="@+id/coffeeTwoInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/divider"
+                        android:layout_alignParentRight="true"
+                        />
+                    <ImageView
+                        android:id="@+id/coffeeThree"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_alignParentRight="true"
+                        />
+                    <TextView
+                        android:id="@+id/coffeeThreeInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/coffeeThreeInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        />
+
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/coffeeOne"
+                        android:background="@drawable/blue_circle"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/coffeeOneTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@+id/coffeeOne"
+                        android:layout_alignRight="@+id/coffeeOne"
+                        android:hint="dkdkdkd"
+                        />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/coffeeOne"
+                        android:layout_toLeftOf="@+id/coffeeTwoTxt"
+                        android:background="@drawable/blue_circle"
+                        android:text="2"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/coffeeTwoTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/coffeeTwo"
+                        android:layout_alignRight="@+id/coffeeTwo"
+                        android:hint="dkdkdkd"
+                        />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/coffeeThree"
+                        android:layout_toLeftOf="@+id/coffeeThreeTxt"
+                        android:background="@drawable/blue_circle"
+                        android:text="3"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:id="@+id/coffeeThreeTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/coffeeThree"
+                        android:layout_alignRight="@+id/coffeeThree"
+                        android:hint="dkdkdkd"
+                        />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="NON - COFFEE 추천 메뉴"
+                    android:textStyle="bold"/>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@color/divider"
+                        />
+                    <ImageView
+                        android:id="@+id/nonCoffeeOne"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/nonCoffeeOneInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/nonCoffeeOneInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:visibility="gone"
+                        />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/divider"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/nonCoffeeTwo"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/nonCoffeeTwoInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/nonCoffeeTwoInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/divider"
+                        android:layout_alignParentRight="true"
+                        />
+                    <ImageView
+                        android:id="@+id/nonCoffeeThree"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_alignParentRight="true"
+                        />
+                    <TextView
+                        android:id="@+id/nonCoffeeThreeInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/nonCoffeeThreeInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        />
+
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/nonCoffeeOne"
+                        android:background="@drawable/blue_circle"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/nonCoffeeOneTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@+id/nonCoffeeOne"
+                        android:layout_alignRight="@+id/nonCoffeeOne"
+                        android:hint="dkdkdkd"
+                        />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/nonCoffeeOne"
+                        android:layout_toLeftOf="@+id/nonCoffeeTwoTxt"
+                        android:background="@drawable/blue_circle"
+                        android:text="2"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/nonCoffeeTwoTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/nonCoffeeTwo"
+                        android:layout_alignRight="@+id/nonCoffeeTwo"
+                        android:hint="dkdkdkd"
+                        />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/nonCoffeeThree"
+                        android:layout_toLeftOf="@+id/nonCoffeeThreeTxt"
+                        android:background="@drawable/blue_circle"
+                        android:text="3"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:id="@+id/nonCoffeeThreeTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/nonCoffeeThree"
+                        android:layout_alignRight="@+id/nonCoffeeThree"
+                        android:hint="dkdkdkd"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="BAKERY 추천 메뉴"
+                    android:textStyle="bold"/>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@color/divider"
+                        />
+                    <ImageView
+                        android:id="@+id/bakeryOne"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_alignParentLeft="true"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryOneInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryOneInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:visibility="gone"
+                        />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/divider"
+                        />
+                    <ImageView
+                        android:id="@+id/bakeryTwo"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_centerHorizontal="true"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryTwoInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryTwoInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@color/divider"
+                        android:layout_alignParentRight="true"
+                        />
+                    <ImageView
+                        android:id="@+id/bakeryThree"
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_marginTop="0.5dp"
+                        android:layout_alignParentRight="true"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryThreeInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryThreeInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        />
+
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/bakeryOne"
+                        android:background="@drawable/blue_circle"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/bakeryOneTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@+id/bakeryOne"
+                        android:layout_alignRight="@+id/bakeryOne"
+                        android:hint="dkdkdkd"
+                        />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/bakeryOne"
+                        android:layout_toLeftOf="@+id/bakeryTwoTxt"
+                        android:background="@drawable/blue_circle"
+                        android:text="2"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/bakeryTwoTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/bakeryTwo"
+                        android:layout_alignRight="@+id/bakeryTwo"
+                        android:hint="dkdkdkd"
+                        />
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/bakeryThree"
+                        android:layout_toLeftOf="@+id/bakeryThreeTxt"
+                        android:background="@drawable/blue_circle"
+                        android:text="3"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:id="@+id/bakeryThreeTxt"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_below="@+id/bakeryThree"
+                        android:layout_alignRight="@+id/bakeryThree"
+                        android:hint="dkdkdkd"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

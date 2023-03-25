@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".EStamp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="e-스탬프 적립"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/stampNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/00"
+                android:textSize="24dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="16dp"
+            android:background="#EEE"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/stamp1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#EEE"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/stamp5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#EEE"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/stamp9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+            <ImageView
+                android:id="@+id/stamp12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:adjustViewBounds="true"
+                android:padding="16dp"
+                android:src="@drawable/gray_circle" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            android:text="|  유의사항 안내"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="1. 한 메뉴당 1개의 스탬프를 적립해드립니다."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="16dp"
+            android:text="2. 스탬프로 메뉴를 결제한 경우, 스탬프가 적립되지 않습니다."/>
+
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".OrderStatus">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:theme="@style/ToolbarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/finishBtn">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/orderLinear1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주문 번호"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/orderNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="A - 01"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/orderRequestStep1"
+                android:layout_width="7dp"
+                android:layout_height="110dp"
+                android:background="@drawable/not_active_btn"
+                android:layout_below="@+id/orderLinear1"
+                android:layout_marginHorizontal="15dp"/>
+
+            <View
+                android:id="@+id/orderApprovalStep1"
+                android:layout_width="7dp"
+                android:layout_height="110dp"
+                android:background="@drawable/not_active_btn"
+                android:layout_below="@+id/orderRequestStep1"
+                android:layout_marginHorizontal="15dp"/>
+
+            <View
+                android:id="@+id/completeStep1"
+                android:layout_width="7dp"
+                android:layout_height="110dp"
+                android:background="@drawable/not_active_btn"
+                android:layout_below="@+id/orderApprovalStep1"
+                android:layout_marginHorizontal="15dp"/>
+
+            <View
+                android:id="@+id/paymentStep"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_below="@+id/orderLinear1"
+                android:background="@drawable/neon_main_btn"
+                android:layout_marginHorizontal="11dp"/>
+
+            <View
+                android:id="@+id/orderRequestStep2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/not_active_btn"
+                android:layout_below="@+id/orderLinear1"
+                android:layout_marginTop="100dp"
+                android:layout_marginHorizontal="11dp"/>
+
+            <View
+                android:id="@+id/orderApprovalStep2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/not_active_btn"
+                android:layout_below="@+id/orderRequestStep2"
+                android:layout_marginHorizontal="11dp"
+                android:layout_marginTop="100dp"/>
+
+            <View
+                android:id="@+id/completeStep2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/not_active_btn"
+                android:layout_below="@+id/orderApprovalStep1"
+                android:layout_marginHorizontal="11dp"
+                android:layout_marginTop="100dp"/>
+
+
+
+            <TextView
+                android:id="@+id/paymentStepTxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:layout_below="@+id/orderLinear1"
+                android:text="결제 완료 | "
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/paymentStepTxt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/paymentStepTxt1"
+                android:layout_below="@+id/orderLinear1"
+                android:hint="결제수단" />
+
+            <TextView
+                android:id="@+id/paymentStepDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/paymentStepTxt2"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:text="2019.09.18 09:11"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/orderRequestTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:layout_below="@+id/paymentStepDate"
+                android:text="주문 요청" />
+
+            <TextView
+                android:id="@+id/orderRequestDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/orderRequestTxt"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:text="2019.09.18 09:11" />
+
+            <TextView
+                android:id="@+id/orderApprovalTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="95dp"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:layout_below="@+id/orderRequestTxt"
+                android:text="주문 승인" />
+
+            <TextView
+                android:id="@+id/orderApprovalDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/orderApprovalTxt"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/completeTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:layout_below="@+id/orderApprovalTxt"
+                android:text="제조 완료" />
+
+            <TextView
+                android:id="@+id/completeDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/completeTxt"
+                android:layout_toRightOf="@+id/paymentStep"
+                android:text="" />
+
+
+
+
+
+
+
+            <View
+                android:id="@+id/line1"
+                android:layout_below="@+id/completeDate"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:id="@+id/store"
+                android:layout_below="@+id/line1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:text="매장명: "/>
+
+            <TextView
+                android:id="@+id/storeName"
+                android:layout_toRightOf="@+id/store"
+                android:layout_below="@+id/line1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="카페드림(본관)"/>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_below="@+id/store"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="10dp"
+                android:background="@color/gray"/>
+
+
+            <RelativeLayout
+                android:id="@+id/orderRelactive3"
+                android:layout_below="@id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="15dp">
+
+                <TextView
+                    android:id="@+id/menuName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="메뉴명"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:id="@+id/options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp"
+                    android:layout_below="@+id/menuName">
+
+                    <TextView
+                        android:id="@+id/optionDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="옵션1/옵션2/옵션3" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/priceDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="0,000원"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_below="@+id/options"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/divider"/>
+
+                <TextView
+                    android:id="@+id/totalPrice"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="0,000원"/>
+
+
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_below="@+id/orderRelactive3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:id="@+id/paymentDetail"
+                android:layout_below="@id/line3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="e-카드"/>
+
+            <TextView
+                android:id="@+id/payTotalPrice"
+                android:layout_below="@id/line3"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="0,000원"/>
+
+            <View
+                android:id="@+id/line4"
+                android:layout_below="@+id/payTotalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:id="@+id/orderLinear4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/payTotalPrice"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="총 "/>
+
+                <TextView
+                    android:id="@+id/quantityDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:hint="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/orderLinear5"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/payTotalPrice"
+                android:layout_margin="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/totalPrice2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:hint="0,000원"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/finishBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/neon_main_btn"
+        android:layout_alignParentBottom="true"
+        android:text="확 인"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+</RelativeLayout>

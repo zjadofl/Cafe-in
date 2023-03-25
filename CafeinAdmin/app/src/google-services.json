@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "183011311315",
+    "firebase_url": "https://cafein-admin.firebaseio.com",
+    "project_id": "cafein-admin",
+    "storage_bucket": "cafein-admin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183011311315:android:033227d79e63a08373de26",
+        "android_client_info": {
+          "package_name": "com.example.cafeinadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183011311315-nkhvlrkvfm2sqq1694fo43f1m4mopu68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-h9jiF3M9BeReBntnGNZGDSlBeyYC_0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183011311315-nkhvlrkvfm2sqq1694fo43f1m4mopu68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

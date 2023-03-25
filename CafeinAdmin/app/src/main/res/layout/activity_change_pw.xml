@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChangePw">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/white"
+        android:background="@color/colorPrimary"/>
+
+    <!-- step1. 현재 비밀번호 입력 -->
+    <RelativeLayout
+        android:id="@+id/step1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/pwText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 비밀번호를 입력해주세요." />
+
+        <EditText
+            android:id="@+id/originalPw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pwText"
+            android:hint="비밀번호"
+            android:maxLength="15"
+            android:inputType="textPassword"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@id/step1NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="다 음"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:background="@drawable/neon_main_btn"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+
+    <!-- step2. 새로운 비밀번호 입력 -->
+    <RelativeLayout
+        android:id="@id/step2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/newPwText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새로운 비밀번호를 입력해주세요."/>
+
+        <EditText
+            android:id="@+id/newPw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 (영소문자, 특수문자 8~15자리)"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/newPwText"/>
+
+        <EditText
+            android:id="@+id/newPwConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/newPw"/>
+
+        <TextView
+            android:id="@+id/confirmMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/newPwConfirm" />
+
+        <Button
+            android:id="@id/step2NextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 변경"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:background="@drawable/neon_main_btn"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
